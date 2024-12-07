@@ -67,7 +67,7 @@ function redrawCanvas() {
       canvas.height / 2 + index * 30
     );
   });
-  requestAnimationFrame(redrawCanvas());
+  requestAnimationFrame(redrawCanvas);
 }
 
 const inputListener = document.addEventListener('input', () => {
