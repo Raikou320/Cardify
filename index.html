@@ -8,14 +8,46 @@
   </head>
   <body>
     <div id="main">
-      <canvas id="canvas" width="400" height="600" style="border: 1px solid black"></canvas>
-      <div id="user-div">
+      <canvas
+        id="canvas"
+        width="400"
+        height="600"
+        style="border: 1px solid black"
+      ></canvas>
+      <div id="params" class="hidden">
         <button id="save-button">Sauvegarder</button>
-        <input type="number" id="card-width" value="400" placeholder="Largueur" />
-        <input type="number" id="card-height" placeholder="Hauteur" value="600" />
-        <input type="text" id="card-name" placeholder="Nom">
-        <input type="text" id="card-description" placeholder="Description">
+        <input
+          type="number"
+          id="card-width"
+          value="400"
+          placeholder="Largueur"
+        />
+        <input
+          type="number"
+          id="card-height"
+          placeholder="Hauteur"
+          value="600"
+        />
+        <input type="text" id="card-name" placeholder="Nom" />
+        <input type="text" id="name-color" placeholder="Couleur nom en anglais" />
+        <input
+          type="text"
+          id="name-font"
+          placeholder="Police et taille Nom ex: 25px sans-serif"
+        />
+        <input type="text" id="card-description" placeholder="Description" />
+        <input
+          type="text"
+          id="description-color"
+          placeholder="Couleur description en anglais"
+        />
+        <input
+          type="text"
+          id="description-font"
+          placeholder="Police et taille description ex: 20px Arial"
+        />
       </div>
+      <button id="options-button">Options</button>
     </div>
     <script src="app.js"></script>
   </body>

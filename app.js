@@ -4,19 +4,27 @@ const saveButton = document.getElementById('save-button');
 const cardHeight = document.getElementById('card-height');
 const cardWidth = document.getElementById('card-width');
 const cardName = document.getElementById('card-name');
+const cardNameColor = document.getElementById('name-color');
+const cardNameFont = document.getElementById('name-font');
 const cardDescription = document.getElementById('card-description');
+const cardDescriptionColor = document.getElementById('description-color');
+const cardDescriptionFont = document.getElementById('description-font');
+const params = document.getElementById('params');
+const optionsButton = document.getElementById('options-button');
 
 ctx.fillStyle = 'lightblue';
 ctx.fillRect(0, canvas.height / 4 - 30, canvas.width, 40);
 ctx.fillRect(0, canvas.height / 2 - 30, canvas.width, 40);
 ctx.fillStyle = 'black';
-ctx.font = '20px Arial';
+ctx.font = '25px Arial';
 
 let cardNameText = ctx.fillText(
   'Nom',
   canvas.width / 2 - 30,
   canvas.height / 4
 );
+
+ctx.font = '20px sans-serif';
 
 let cardDescriptionText = ctx.fillText(
   'Description',
@@ -32,34 +40,26 @@ saveButton.addEventListener('click', () => {
   link.click();
 });
 
-// Modifications de la taille du canvas
-cardHeight.addEventListener('input', () => {
-  canvas.height = cardHeight.value;
-});
-
-cardWidth.addEventListener('input', () => {
+function redrawCanvas() {
   canvas.width = cardWidth.value;
-});
-
-// Mise à jour du nom sur le canvas
-cardName.addEventListener('input', () => {
-  ctx.clearRect(0, canvas.height / 4 - 20, canvas.width, 40);
+  canvas.height = cardHeight.value;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'lightblue';
   ctx.fillRect(0, canvas.height / 4 - 30, canvas.width, 40);
-  ctx.fillStyle = 'black';
-  cardNameText = ctx.fillText(
+  ctx.fillRect(0, canvas.height / 2 - 30, canvas.width, 40);
+  ctx.fillStyle = cardNameColor.value;
+  ctx.font = cardNameFont.value;
+  ctx.fillText(
     cardName.value,
     canvas.width / 2 - cardName.value.length * 5,
     canvas.height / 4
   );
-});
-
-cardDescription.addEventListener('input', () => {
-  const lines = addBr(cardDescription.value, 30);
-  ctx.clearRect(0, canvas.height / 2 - 20, canvas.width, 150);
-  ctx.fillStyle = 'lightblue';
-  ctx.fillRect(0, canvas.height / 2 - 30, canvas.width, 150);
-  ctx.fillStyle = 'black';
+  const lines = addBr(
+    cardDescription.value ? cardDescription.value : '',
+    canvas.width / 10
+  );
+  ctx.fillStyle = cardDescriptionColor.value;
+  ctx.font = cardDescriptionFont.value;
   lines.split('\n').forEach((line, index) => {
     ctx.fillText(
       line,
@@ -67,8 +67,25 @@ cardDescription.addEventListener('input', () => {
       canvas.height / 2 + index * 30
     );
   });
+  requestAnimationFrame(redrawCanvas());
+}
+
+const inputListener = document.addEventListener('input', () => {
+  redrawCanvas();
+});
+
+document.removeEventListener('input', inputListener);
+
+optionsButton.addEventListener('click', () => {
+  params.classList.toggle('hidden');
+  canvas.classList.toggle('hidden');
+  params.classList.contains('hidden')
+    ? (optionsButton.innerHTML = 'Options')
+    : (optionsButton.innerHTML = 'Carte');
 });
 
 function addBr(string, interval) {
-  return string.match(new RegExp(`.{1,${interval}}`, 'g')).join('\n');
+  return (
+    string.match(new RegExp(`.{1,${interval}}`, 'g'))?.join('\n') || string
+  );
 }
