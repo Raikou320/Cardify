@@ -1,1 +1,22 @@
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardify</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <canvas id="canvas" width="400" height="600" style="border: 1px solid black"></canvas>
+      <div id="user-div">
+        <button id="save-button">Sauvegarder</button>
+        <input type="number" id="card-width" value="400" placeholder="Largueur" />
+        <input type="number" id="card-height" placeholder="Hauteur" value="600" />
+        <input type="text" id="card-name" placeholder="Nom">
+        <input type="text" id="card-description" placeholder="Description">
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  height: clamp(200px, 100vh, 2000px);
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+#user-div {
+  border: 1px solid black;
+  width: clamp(100px, 35vw, 1500px);
+  height: clamp(30px, 25vh, 800px);
+  padding: 8px 6px 9px 12px;
+}
+
+#main {
+  display: block;
+}
+
+input,
+#save-button {
+  width: 20%;
+  padding: 8px 5px;
+  margin: 5%;
+}
+
+#card-description {
+    height: 45%;
+    width: 35%;
+}
