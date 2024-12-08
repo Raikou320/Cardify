@@ -43,30 +43,57 @@ saveButton.addEventListener('click', () => {
 function redrawCanvas() {
   canvas.width = cardWidth.value;
   canvas.height = cardHeight.value;
+
+  // Crée les lignes pour le texte de description
+  const lines = addBr(
+    cardDescription.value ? cardDescription.value : '',
+    canvas.width / 10
+  ).split('\n');
+
+  // Efface le canvas avant de redessiner
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Dessine le rectangle du haut (fixe)
   ctx.fillStyle = 'lightblue';
-  ctx.fillRect(0, canvas.height / 4 - 30, canvas.width, 40);
-  ctx.fillRect(0, canvas.height / 2 - 30, canvas.width, 40);
+  ctx.fillRect(
+    0, 
+    canvas.height / 8, 
+    canvas.width, 
+    40
+  );
+
+  // Dessine le texte du nom dans le rectangle du haut
   ctx.fillStyle = cardNameColor.value;
   ctx.font = cardNameFont.value;
   ctx.fillText(
     cardName.value,
     canvas.width / 2 - cardName.value.length * 5,
-    canvas.height / 4
+    canvas.height / 8 + 25
   );
-  const lines = addBr(
-    cardDescription.value ? cardDescription.value : '',
-    canvas.width / 10
+
+  // Calcule la hauteur dynamique du rectangle du bas
+  const rectangleHeight = 40 + lines.length * 15; // Hauteur de base + augmentation par ligne
+
+  // Dessine le rectangle du bas
+  ctx.fillStyle = 'lightblue';
+  ctx.fillRect(
+    0,
+    canvas.height / 2,
+    canvas.width,
+    rectangleHeight
   );
+
+  // Dessine chaque ligne de la description dans le rectangle du bas
   ctx.fillStyle = cardDescriptionColor.value;
   ctx.font = cardDescriptionFont.value;
-  lines.split('\n').forEach((line, index) => {
+  lines.forEach((line, index) => {
     ctx.fillText(
       line,
       canvas.width / 2 - line.length * 5,
-      canvas.height / 2 + index * 30
+      canvas.height / 2 + 25 + index * 20 // Ajuste la position verticale pour chaque ligne
     );
   });
+
   requestAnimationFrame(redrawCanvas);
 }
 
