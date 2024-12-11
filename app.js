@@ -13,7 +13,14 @@ const params = document.getElementById('params');
 const optionsButton = document.getElementById('options-button');
 const printCard = sdocument.getElementById('print-card');
 
-printCard.addEventListener('click', () => canvas.print())
+printCard.addEventListener('click', () => {
+  const dataUrl = canvas.toDataURL(); // Convertit le contenu du canvas en image
+  const printWindow = window.open('', '', 'width=600,height=600'); // Ouvre une nouvelle fenêtre
+  printWindow.document.write('<img src="' + dataUrl + '" />'); // Ajoute l'image dans la fenêtre
+  printWindow.document.close(); // Ferme le document pour qu'il soit prêt à imprimer
+  printWindow.print(); // Lance l'impression
+});
+s.print())
 
 ctx.fillStyle = 'lightblue';
 ctx.fillRect(0, canvas.height / 4 - 30, canvas.width, 40);
