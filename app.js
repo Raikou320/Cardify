@@ -11,6 +11,9 @@ const cardDescriptionColor = document.getElementById('description-color');
 const cardDescriptionFont = document.getElementById('description-font');
 const params = document.getElementById('params');
 const optionsButton = document.getElementById('options-button');
+const printCard = sdocument.getElementById('print-card');
+
+printCard.addEventListener('click', () => canvas.print())
 
 ctx.fillStyle = 'lightblue';
 ctx.fillRect(0, canvas.height / 4 - 30, canvas.width, 40);
