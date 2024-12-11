@@ -11,7 +11,7 @@ const cardDescriptionColor = document.getElementById('description-color');
 const cardDescriptionFont = document.getElementById('description-font');
 const params = document.getElementById('params');
 const optionsButton = document.getElementById('options-button');
-const printCard = sdocument.getElementById('print-card');
+const printCard = document.getElementById('print-card');
 
 printCard.addEventListener('click', () => {
   const dataUrl = canvas.toDataURL(); // Convertit le contenu du canvas en image
