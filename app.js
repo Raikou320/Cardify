@@ -20,7 +20,6 @@ printCard.addEventListener('click', () => {
   printWindow.document.close(); // Ferme le document pour qu'il soit prêt à imprimer
   printWindow.print(); // Lance l'impression
 });
-s.print())
 
 ctx.fillStyle = 'lightblue';
 ctx.fillRect(0, canvas.height / 4 - 30, canvas.width, 40);
